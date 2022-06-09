@@ -1,8 +1,4 @@
-# Substrate Node Template
-
-[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://docs.substrate.io/playground/) [![Matrix](https://img.shields.io/matrix/substrate-technical:matrix.org)](https://matrix.to/#/#substrate-technical:matrix.org)
-
-A fresh FRAME-based [Substrate](https://www.substrate.io/) node, ready for hacking :rocket:
+# EHR-XCHAIN
 
 ## Getting Started
 
@@ -82,27 +78,6 @@ RUST_BACKTRACE=1 ./target/release/node-template -ldebug --dev
 > - Alice//stash
 > - Bob//stash
 
-In case of being interested in maintaining the chain' state between runs a base path must be added
-so the db can be stored in the provided folder instead of a temporal one. We could use this folder
-to store different chain databases, as a different folder will be created per different chain that
-is ran. The following commands shows how to use a newly created folder as our db base path.
-
-```bash
-// Create a folder to use as the db base path
-$ mkdir my-chain-state
-
-// Use of that folder to store the chain state
-$ ./target/release/node-template --dev --base-path ./my-chain-state/
-
-// Check the folder structure created inside the base path after running the chain
-$ ls ./my-chain-state
-chains
-$ ls ./my-chain-state/chains/
-dev
-$ ls ./my-chain-state/chains/dev
-db keystore network
-```
-
 
 ### Connect with Polkadot-JS Apps Front-end
 
@@ -111,15 +86,6 @@ to interact with your chain. [Click
 here](https://polkadot.js.org/apps/#/explorer?rpc=ws://localhost:9944) connecting the Apps to your
 local node template.
 
-### Multi-Node Local Testnet
-
-If you want to see the multi-node consensus algorithm in action, refer to our
-[Start a Private Network tutorial](https://docs.substrate.io/tutorials/v3/private-network).
-
-## Template Structure
-
-A Substrate project such as this consists of a number of components that are spread across a few
-directories.
 
 ### Node
 
@@ -162,30 +128,6 @@ capabilities and configuration parameters that it exposes:
 ./target/release/node-template --help
 ```
 
-### Runtime
-
-In Substrate, the terms
-"[runtime](https://docs.substrate.io/v3/getting-started/glossary#runtime)" and
-"[state transition function](https://docs.substrate.io/v3/getting-started/glossary#state-transition-function-stf)"
-are analogous - they refer to the core logic of the blockchain that is responsible for validating
-blocks and executing the state changes they define. The Substrate project in this repository uses
-the [FRAME](https://docs.substrate.io/v3/runtime/frame) framework to construct a
-blockchain runtime. FRAME allows runtime developers to declare domain-specific logic in modules
-called "pallets". At the heart of FRAME is a helpful
-[macro language](https://docs.substrate.io/v3/runtime/macros) that makes it easy to
-create pallets and flexibly compose them to create blockchains that can address
-[a variety of needs](https://www.substrate.io/substrate-users/).
-
-Review the [FRAME runtime implementation](./runtime/src/lib.rs) included in this template and note
-the following:
-
-- This file configures several pallets to include in the runtime. Each pallet configuration is
-  defined by a code block that begins with `impl $PALLET_NAME::Config for Runtime`.
-- The pallets are composed into a single runtime by way of the
-  [`construct_runtime!`](https://crates.parity.io/frame_support/macro.construct_runtime.html)
-  macro, which is part of the core
-  [FRAME Support](https://docs.substrate.io/v3/runtime/frame#support-crate)
-  library.
 
 ### Pallets
 
